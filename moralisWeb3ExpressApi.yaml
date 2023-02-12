@@ -1,0 +1,333 @@
+openapi: 3.0.3
+info:
+  title: MORALIS WEB3 EXPRESS API - OpenAPI 3.0
+  description: |-
+    This express gets and make API calls from a single Web3 SDK for now (Morlais)
+  contact:
+    email: saintademilayo@gmail.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.11
+servers:
+  - url: https://web3-express-api.vercel.app/v1
+tags:
+  - name: Resolve 
+    description: Resolve API
+    externalDocs:
+      description: Find out more on gitbook
+      url: https://saintdevs-organization.gitbook.io/moralisweb3expressapi/
+  - name: Token
+    description: TokenAPI
+    externalDocs:
+      description: Find out more on gitbook
+      url: https://saintdevs-organization.gitbook.io/moralisweb3expressapi/
+  - name: Balance
+    description: Balance API
+paths:
+  /resolveUdDomains/{domain} :
+    get:
+      tags:
+        - Resolve
+      summary: Resolve Unstoppable domain on the ETH network only
+      description: Resolve an unstopple domain from the domain name
+      operationId: updatePet
+      parameters:
+        - name: x-api-key
+          in: header
+          description: MORALIS API KEY
+          required: true
+          schema:
+             type: string
+             default: 
+        - name: domain
+          in: path
+          description: The unstoppable domain name
+          required: true
+          schema:
+             type: string
+             default:
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/resolve'
+        '500':
+          description: please add an x-api-key request header when sending requests.
+  /resolveEns/{address}:
+    get:
+      tags:
+        - Resolve
+      summary: Finds Pets by status
+      description: Multiple status values can be provided with comma separated strings
+      operationId: findPetsByStatus
+      parameters:
+        - name: x-api-key
+          in: header
+          description: MORALIS API KEY
+          required: true
+          schema:
+             type: string
+             default: 
+        - name: address
+          in: path
+          description: The unstoppable domain name
+          required: true
+          schema:
+             type: string
+             default:
+      responses:
+         '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/resolve'          
+         '500':
+          description: please add an x-api-key request header when sending requests
+  /getERC20Tokens/{address}:
+    get:
+      tags:
+        - Token
+      summary: get all ERC20 tokens owned by an address
+      description: get all ERC20 tokens owned by an address.
+      operationId: findtokenbyaddress
+      parameters:
+        - name: x-api-key
+          in: header
+          description: MORALIS API KEY
+          required: true
+          schema:
+             type: string
+             default: 
+        - name: address
+          in: path
+          description: The unstoppable domain name
+          required: true
+          schema:
+             type: string
+             default:
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/token'          
+        '500':
+          description: please add an x-api-key request header when sending requests.
+  /getERC20Transfers/{address}:
+    get:
+      tags:
+        - Token
+      summary:  get all ERC20 transfers by contract
+      description: Returns a single pet
+      operationId: gettransferbycontract
+      parameters:
+        - name: x-api-key
+          in: header
+          description: ID of pet to return
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: address
+          in: path
+          description: Pet id to delete
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/token'          
+        '500':
+          description: please add an x-api-key request header when sending requests
+  /getERC20TransfersByWallet/{address}:
+    get:
+      tags:
+        - Token
+      summary: get all ERC20 transfers by wallet
+      description: ''
+      operationId: gettransfersbywallet
+      parameters:
+        - name: x-api-key
+          in: header
+          description: ID of pet that needs to be updated
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: address
+          in: path
+          description: wallet address
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/token'   
+        '500':
+          description: please add an x-api-key request header when sending requests.
+  /getERC20Metadata/{address}:
+    get:
+      tags:
+        - Token
+      summary: get ERC20 metadata by contract
+      description: get metadata
+      operationId: getmetadatabycontract
+      parameters:
+        - name: x-api-key
+          in: header
+          description: ''
+          required: true
+          schema:
+            type: string
+        - name: address
+          in: path
+          description: Pet id to delete
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/token'   
+        '500':
+          description: please add an x-api-key request header when sending requests.
+  /getNativeBalance/{address}:
+    get:
+      tags:
+        - balance
+      summary: get the native balance of an address
+      description: ''
+      operationId: getbalance
+      parameters:
+        - name: x-api-key
+          in: header
+          description: ID of pet to update
+          required: true
+          schema:
+            type: string
+        - name: address
+          in: path
+          description: Additional Metadata
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/balance'
+        '500':
+          description: please add an x-api-key request header when sending requests
+  /getERC20VaultBalance/{address}:
+    get:
+      tags:
+        - balance
+      summary: please add an x-api-key request header when sending requests.
+      description: Returns a map of status codes to quantities
+      operationId: getInventory
+      parameters:
+        - name: x-api-key
+          in: header
+          description: MORALIS API KEY
+          required: true
+          schema:
+             type: string
+             default: 
+        - name: address
+          in: path
+          description: The unstoppable domain name
+          required: true
+          schema:
+             type: string
+             default:
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: integer
+                  format: int32
+        '500':
+          description: please add an x-api-key request header when sending requests
+  /getMultiSigBalance/{address}:
+    get:
+      tags:
+        - balance
+      summary: get the native balance of a multi-signature wallet
+      description: Place a new order in the store
+      operationId: getMultiSigBalance
+      parameters:
+        - name: x-api-key
+          in: header
+          description: bla 
+          required: true
+          schema:
+            type: string
+        - name: address
+          in: path
+          description: The unstoppable domain name
+          required: true
+          schema:
+             type: string
+             default:
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/balance'
+        '500':
+          description: please add an x-api-key request header when sending requests.
+components:
+  schemas:
+    resolve:
+      type: object
+      properties:
+        name:
+          type: string
+          example: flex
+    token:
+      type: object
+      properties:
+        name:
+          type: integer
+          format: int64
+          example: good
+          items:
+            $ref: '#/components/schemas/token'
+    balance:
+      type: object
+      properties:
+        name:
+          type: string
+          example: flex
+      xml:
+        name: address
