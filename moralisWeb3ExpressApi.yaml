@@ -53,7 +53,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/resolve'
+                $ref: '#/components/schemas/resolveud'
         '500':
           description: please add an x-api-key request header when sending requests.
   /resolveEns/{address}:
@@ -313,7 +313,13 @@ components:
       properties:
         name:
           type: string
-          example: flex
+          example: vitalik.eth
+    resolveud:
+      type: object
+      properties:
+        address:
+          type: string
+          example: 0x8aaD44321A86b170879d7A244c1e8d360c99DdA8
     token:
       type: object
       properties:
