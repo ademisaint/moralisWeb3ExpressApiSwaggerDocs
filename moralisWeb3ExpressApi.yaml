@@ -73,7 +73,7 @@ paths:
              default: 
         - name: address
           in: path
-          description: The unstoppable domain name
+          description: name from an ETH address
           required: true
           schema:
              type: string
@@ -106,7 +106,7 @@ paths:
              default: 
         - name: address
           in: path
-          description: The unstoppable domain name
+          description: name from an ETH address
           required: true
           schema:
              type: string
@@ -150,7 +150,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/token'          
+                $ref: '#/components/schemas/transfer'          
         '500':
           description: please add an x-api-key request header when sending requests
   /getERC20TransfersByWallet/{address}:
@@ -180,7 +180,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/token'   
+                $ref: '#/components/schemas/transfersByWallet'   
         '500':
           description: please add an x-api-key request header when sending requests.
   /getERC20Metadata/{address}:
@@ -324,11 +324,65 @@ components:
       type: object
       properties:
         name:
-          type: integer
+          type: string
           format: int64
           example: good
           items:
             $ref: '#/components/schemas/token'
+        token_address: 
+          type: string
+          example: 0xefd6c64533602ac55ab64442307f6fe2c9307305
+        symbol:
+          type: string
+          example: APE,
+        logo: 
+          type: 
+          example: null,
+        thumbnail:
+          type: integer
+          example: null,
+        decimals: 
+          type: integer
+          example: 18,
+        balance: 
+          type: integer
+          example: 101715701444169451516503179
+    transfer: 
+      type: object
+      properties:
+        total:
+          type: integer 
+          example: null,
+        page:
+          type: integer
+          example: 0,
+        page_size:
+          type: 
+          example: 100,
+        cursor:
+          type: integer 
+          example: null,
+        result:
+          type: integer
+          example: []
+    transfersByWallet:
+      type: object
+      properties:
+        total:
+          type: integer 
+          example: null,
+        page:
+          type: integer
+          example: 0,
+        page_size:
+          type: 
+          example: 100,
+        cursor:
+          type: integer 
+          example: null,
+        result:
+          type: integer
+          example: []
     balance:
       type: object
       properties:
