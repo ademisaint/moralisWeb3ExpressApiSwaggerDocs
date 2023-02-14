@@ -210,7 +210,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/token'   
+                $ref: '#/components/schemas/metadata'   
         '500':
           description: please add an x-api-key request header when sending requests.
   /getNativeBalance/{address}:
@@ -419,9 +419,3 @@ components:
         balance:
           type: string
           example: 900051407680925461166
-    vault balance:
-      type: object
-      properties: 
-        balance:
-          type: integer
-          example: 3989233490541891348056490
