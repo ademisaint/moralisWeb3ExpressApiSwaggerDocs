@@ -383,11 +383,45 @@ components:
         result:
           type: integer
           example: []
+    metadata: 
+      type: object
+      properties: 
+        address: 
+          type: 
+          example: 0x1f9840a85d5af5bf1d1762f925bdaddc4201f984,
+        name: 
+          type: string
+          example: Uniswap,
+        symbol: 
+          type: 
+          example: UNI,
+        decimals:
+          type: 
+          example: 18,
+        logo: 
+          type: string
+          example: https://cdn.moralis.io/eth/0x1f9840a85d5af5bf1d1762f925bdaddc4201f984.webp,
+        logo_hash:
+          type:  string
+          example: 064ee9557deba73c1a31014a60f4c081284636b785373d4ccdd1b3440df11f43,
+        thumbnail:
+          type: string
+          example: https://cdn.moralis.io/eth/0x1f9840a85d5af5bf1d1762f925bdaddc4201f984_thumb.webp,
+        block_number:
+          type: integer
+          example: null,
+        validated:
+          type: boolean
+          example: null,
     balance:
       type: object
       properties:
-        name:
+        balance:
           type: string
-          example: flex
-      xml:
-        name: address
+          example: 900051407680925461166
+    vault balance:
+      type: object
+      properties: 
+        balance:
+          type: integer
+          example: 3989233490541891348056490
