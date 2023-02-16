@@ -270,10 +270,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                additionalProperties:
-                  type: integer
-                  format: int32
+                $ref: '#/components/schemas/balance'
         '500':
           description: please add an x-api-key request header when sending requests
   /getMultiSigBalance/{address}:
@@ -336,7 +333,7 @@ components:
           type: string
           example: APE,
         logo: 
-          type: 
+          type: string
           example: null,
         thumbnail:
           type: integer
@@ -357,7 +354,7 @@ components:
           type: integer
           example: 0,
         page_size:
-          type: 
+          type: integer
           example: 100,
         cursor:
           type: integer 
@@ -375,7 +372,7 @@ components:
           type: integer
           example: 0,
         page_size:
-          type: 
+          type: integer
           example: 100,
         cursor:
           type: integer 
@@ -387,17 +384,17 @@ components:
       type: object
       properties: 
         address: 
-          type: 
-          example: 0x1f9840a85d5af5bf1d1762f925bdaddc4201f984,
+          type: string
+          example: 0x1f9840a85d5af5bf1d1762f925bdaddc4201f984
         name: 
           type: string
           example: Uniswap,
         symbol: 
-          type: 
+          type: string
           example: UNI,
         decimals:
-          type: 
-          example: 18,
+          type: string
+          example: 18
         logo: 
           type: string
           example: https://cdn.moralis.io/eth/0x1f9840a85d5af5bf1d1762f925bdaddc4201f984.webp,
